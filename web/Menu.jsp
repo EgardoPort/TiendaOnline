@@ -1,21 +1,25 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-
+<head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
-              <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    </head>
-    <title>Menu </title>
+        <link href="imags/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="imags/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="imags/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="imags/css/animate.css" rel="stylesheet" type="text/css"/>
+        <link href="imags/css/price-range.css" rel="stylesheet" type="text/css"/>
+        <link href="imags/css/responsive.css" rel="stylesheet" type="text/css"/>
+        <a href="imags/fonts/FontAwesome.otf"></a>
+        <a href="imags/fonts/fontawesome-webfont.svg"></a>
+        <a href="imags/fonts/glyphicons-halflings-regular.svg"></a>
+        <a href="imags/fonts/glyphicons-halflings-regular.woff"></a>
+        <link href="imags/css/._documenter_style.css" rel="stylesheet" type="text/css"/>
+    
+        <title>Menu </title>
 
 </head>
 
@@ -37,7 +41,6 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-
                             </ul>
                         </div>
                     </div>
@@ -126,20 +129,21 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <img src="imags/images/Menu/orquidea1.jpg" class="girl img-responsive" alt="" />
-
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="carousel-inner">
                             <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>Floristeria</span>-Orakle</h1>
-                                    <h2>En Arreglos</h2>
-
-                                    <button type="button" class="btn btn-default get">Compra ahora</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="imags/images/Menu/orquidea2.jpg" class="girl img-responsive" alt="" />
-                                </div>
+                                <div class="item active">
+                                    <div class="col-sm-6">
+                                        <h1><span>Floristeria</span>-Orakle</h1>
+                                        <h2>En Arreglos</h2>
+                                        <button type="button" class="btn btn-default get">Compra ahora</button>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="imags/images/Menu/orquidea2.jpg" class="girl img-responsive" alt="" />
+                                    </div>
+                                </div>  
                             </div>
 
                         </div>
@@ -147,7 +151,7 @@
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                             <i class="fa fa-angle-left"></i>
                         </a>
-                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <a href="#slider-carousel1" class="right control-carousel hidden-xs" data-slide="next">
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </div>
@@ -229,15 +233,15 @@
                     </div>
 
 
-                    <div class="col-sm-9 padding-right">
+                    <div class="col-sm-12 padding-right">
                         <div class="features_items"><!--features_items-->
                             <h2 class="title text-center"> Nuevos Arreglos</h2>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <img src="imags/images/shop/rofrutas.jpg" alt=""/>
-                                            
+
                                             <h2>$70</h2>
                                             <p>Rosas y frutas</p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
@@ -252,12 +256,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-10">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <img src="imags/images/shop/redy.jpg" alt=""/>
-                                           
+
                                             <h2>$60</h2>
                                             <p>Rosas</p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al carrito</a>
@@ -286,14 +290,5 @@
                     <script src="js/price-range.js"></script>
                     <script src="js/jquery.prettyPhoto.js"></script>
                     <script src="js/main.js"></script>
-                    <link href="imags/css/main.css" rel="stylesheet" type="text/css"/>
-                    <link href="imags/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-                    <link href="imags/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-                    <link href="imags/css/animate.css" rel="stylesheet" type="text/css"/>
-                    <link href="imags/css/price-range.css" rel="stylesheet" type="text/css"/>
-                    <link href="imags/css/responsive.css" rel="stylesheet" type="text/css"/>
-                    <a href="imags/fonts/FontAwesome.otf"></a>
-                    <a href="imags/fonts/fontawesome-webfont.svg"></a>
-                    <a href="imags/fonts/glyphicons-halflings-regular.svg"></a>
-                    <a href="imags/fonts/glyphicons-halflings-regular.woff"></a>
-                    <link href="imags/css/._documenter_style.css" rel="stylesheet" type="text/css"/>
+
+                    </body>
