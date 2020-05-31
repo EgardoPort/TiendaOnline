@@ -1,6 +1,6 @@
 package Model;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ public class Usuario_Model {
     private String estado;
     private String tipo_user;
     private Connection con = null;
+    private Statement stmt = null;
     
     public Usuario_Model(){
         Conexion obj = new Conexion();
@@ -108,22 +109,21 @@ public class Usuario_Model {
         ArrayList<Usuario_Model> list = new ArrayList();
         
         try {
-            String sql = "SELECT * FROM usuarios";
-            Statement stmt = this.con.createStatement();
-            ResultSet res = stmt.executeQuery(sql);
+            this.stmt = this.con.createStatement();
+            ResultSet res = this.stmt.executeQuery("SELECT * FROM usuarios");
             
             while (res.next()) {
                 Usuario_Model user = new Usuario_Model();
                 
-                user.setId_usuarios(res.getInt("id"));
-                user.setNombre_user(res.getString("nombre"));
-                user.setApellido_user(res.getString("apellido"));
-                user.setFecha_nacimiento(res.getDate("fecha"));
+                //user.setId_usuarios(res.getInt("id"));
+                user.setNombre_user(res.getString("nombre_user"));
+                user.setApellido_user(res.getString("apellido_user"));
+                user.setFecha_nacimiento(res.getDate("fecha_nacimiento"));
                 user.setTelefono(res.getString("telefono"));
-                user.setEmail(res.getString("correo"));
-                user.setPass(res.getString("pass"));
+                user.setEmail(res.getString("email"));
+                user.setEstado(res.getString("estado"));
                 user.setGenero(res.getString("genero"));
-                user.setTipo_user(res.getString("tipo"));
+                user.setTipo_user(res.getString("tipo_user"));
                 
                 list.add(user);
             }
@@ -131,5 +131,38 @@ public class Usuario_Model {
             System.out.println("Error-SQL:getUsers");
         }
         return list;
+    }
+    
+    // Método para agregar un nuevo usuario.
+    public boolean agregarUser(){
+        boolean resultado = false;
+        
+        try {
+            String sql = "INSERT INTO usuarios (null, '"+this.nombre_user+"', '"+this.apellido_user+"','"+this.fecha_nacimiento+"', "
+                    + "'"+this.telefono+"', '"+this.email+"','"+this.pass+"', '"+this.genero+"','"+this.estado+"', '"+this.tipo_user+"')";
+            this.stmt = con.createStatement();
+            
+            resultado = (stmt.executeUpdate(sql) > 0) ? true : false;
+            
+        } catch (Exception e) {
+            System.out.println("Error-Add new user." + e.getMessage());
+        }
+        return resultado;
+    }
+    
+    public boolean actualizarUser(){
+        boolean update = false;
+        
+        try {
+            String sql = "UPDATE usuarios SET nombre_user='"+this.nombre_user+"', apellido_user='"+this.apellido_user+"',"
+                    + "fecha_nacimiento='"+this.fecha_nacimiento+"', telefono='"+this.telefono+"', email='"+this.email+"',"
+                    + "pass='"+this.pass+"', genero='"+this.genero+"', estado='"+this.estado+"', tipo_user='"+this.tipo_user+"'";
+            this.stmt = con.createStatement();
+            update = (stmt.executeUpdate(sql) > 0) ? true : false;
+            
+        } catch (Exception e) {
+            System.out.println("Error-Update user." + e.getMessage());
+        }
+        return update;
     }
 }
