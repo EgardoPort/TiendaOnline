@@ -165,4 +165,22 @@ public class Usuario_Model {
         }
         return update;
     }
+    
+    public String tipoUser(){
+        ResultSet res;
+        String rol = "";
+        
+         try{
+            String sql = "SELECT * FROM usuarios WHERE email = '"+this.email+"' AND pass = '"+this.pass+"'";
+            Statement stmt = this.con.createStatement();
+            res = stmt.executeQuery(sql);
+            res.next();
+            
+            rol = res.getString("tipo_user");
+            
+        }catch(Exception e){
+            System.out.println("Error de Sql "+e.getMessage());
+        }
+        return rol;   
+    }
 }

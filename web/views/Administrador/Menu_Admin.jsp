@@ -1,4 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession se = request.getSession();
+    if (se.getAttribute("tipo_user") == null) {
+        response.sendRedirect(request.getContextPath() + "/Login.jsp");
+    } else {
+        String tipo = se.getAttribute("tipo_user").toString();
+        if (!tipo.equals("Administrador")) {
+            response.sendRedirect(request.getContextPath() + "/Login.jsp");
+        }
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,7 +67,6 @@
 
                                     <li><a href=""><i class="fa fa-crosshairs"></i> Caja</a></li>
                                     <li><a href="cart.jsp"><i class="fa fa-shopping-cart"></i> Carro de compra</a></li>
-                                    <li><a href="Login.jsp"><i class="fa fa-lock"></i> login</a></li>
                                 </ul>
                             </div>
                         </div>
