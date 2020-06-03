@@ -3,10 +3,12 @@ package Model;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Usuario_Model {
+
     private int id_usuarios;
     private String nombre_user;
     private String apellido_user;
@@ -19,8 +21,8 @@ public class Usuario_Model {
     private String tipo_user;
     private Connection con = null;
     private Statement stmt = null;
-    
-    public Usuario_Model(){
+
+    public Usuario_Model() {
         Conexion obj = new Conexion();
         this.con = obj.getConexion();
     }
@@ -104,17 +106,17 @@ public class Usuario_Model {
     public void setTipo_user(String tipo_user) {
         this.tipo_user = tipo_user;
     }
-    
-    public ArrayList<Usuario_Model> getUsers(){
+
+    public ArrayList<Usuario_Model> getUsers() {
         ArrayList<Usuario_Model> list = new ArrayList();
-        
+
         try {
             this.stmt = this.con.createStatement();
             ResultSet res = this.stmt.executeQuery("SELECT * FROM usuarios");
-            
+
             while (res.next()) {
                 Usuario_Model user = new Usuario_Model();
-                
+
                 //user.setId_usuarios(res.getInt("id"));
                 user.setNombre_user(res.getString("nombre_user"));
                 user.setApellido_user(res.getString("apellido_user"));
@@ -124,7 +126,7 @@ public class Usuario_Model {
                 user.setEstado(res.getString("estado"));
                 user.setGenero(res.getString("genero"));
                 user.setTipo_user(res.getString("tipo_user"));
-                
+
                 list.add(user);
             }
         } catch (Exception e) {
@@ -132,55 +134,67 @@ public class Usuario_Model {
         }
         return list;
     }
-    
+
     // Método para agregar un nuevo usuario.
-    public boolean agregarUser(){
+    public boolean agregarUser() {
         boolean resultado = false;
-        
+
         try {
-            String sql = "INSERT INTO usuarios (null, '"+this.nombre_user+"', '"+this.apellido_user+"','"+this.fecha_nacimiento+"', "
-                    + "'"+this.telefono+"', '"+this.email+"','"+this.pass+"', '"+this.genero+"','"+this.estado+"', '"+this.tipo_user+"')";
+            String sql = "INSERT INTO usuarios (null, '" + this.nombre_user + "', '" + this.apellido_user + "','" + this.fecha_nacimiento + "', "
+                    + "'" + this.telefono + "', '" + this.email + "','" + this.pass + "', '" + this.genero + "','" + this.estado + "', '" + this.tipo_user + "')";
             this.stmt = con.createStatement();
-            
+
             resultado = (stmt.executeUpdate(sql) > 0) ? true : false;
-            
+
         } catch (Exception e) {
             System.out.println("Error-Add new user." + e.getMessage());
         }
         return resultado;
     }
-    
-    public boolean actualizarUser(){
+
+    public boolean actualizarUser() {
         boolean update = false;
-        
+
         try {
-            String sql = "UPDATE usuarios SET nombre_user='"+this.nombre_user+"', apellido_user='"+this.apellido_user+"',"
-                    + "fecha_nacimiento='"+this.fecha_nacimiento+"', telefono='"+this.telefono+"', email='"+this.email+"',"
-                    + "pass='"+this.pass+"', genero='"+this.genero+"', estado='"+this.estado+"', tipo_user='"+this.tipo_user+"'";
+            String sql = "UPDATE usuarios SET nombre_user='" + this.nombre_user + "', apellido_user='" + this.apellido_user + "',"
+                    + "fecha_nacimiento='" + this.fecha_nacimiento + "', telefono='" + this.telefono + "', email='" + this.email + "',"
+                    + "pass='" + this.pass + "', genero='" + this.genero + "', estado='" + this.estado + "', tipo_user='" + this.tipo_user + "'";
             this.stmt = con.createStatement();
             update = (stmt.executeUpdate(sql) > 0) ? true : false;
-            
+
         } catch (Exception e) {
             System.out.println("Error-Update user." + e.getMessage());
         }
         return update;
     }
-    
-    public String tipoUser(){
+
+    public String tipoUser() {
         ResultSet res;
         String rol = "";
-        
-         try{
-            String sql = "SELECT * FROM usuarios WHERE email = '"+this.email+"' AND pass = '"+this.pass+"'";
-            Statement stmt = this.con.createStatement();
-            res = stmt.executeQuery(sql);
+
+        try {
+            this.stmt = this.con.createStatement();
+            res = stmt.executeQuery("SELECT * FROM usuarios WHERE email = '" + this.email + "' AND pass = '" + this.pass + "'");
+            res.next();
+
+            rol = res.getString("tipo_user");
+
+        } catch (Exception e) {
+            System.out.println("Error de Sql " + e.getMessage());
+        }
+        return rol;
+    }
+
+    public String getNameUser(){
+        String nombre = "";
+        try {
+            this.stmt = this.con.createStatement();
+            ResultSet res = this.stmt.executeQuery("SELECT CONCAT(nombre_user, ' ', apellido_user) nombreCompleto FROM usuarios WHERE email = '" + this.email + "'");
             res.next();
             
-            rol = res.getString("tipo_user");
-            
-        }catch(Exception e){
-            System.out.println("Error de Sql "+e.getMessage());
+            nombre = res.getString("nombreCompleto");
+        } catch (Exception e) {
         }
-        return rol;   
+        return nombre;
     }
 }

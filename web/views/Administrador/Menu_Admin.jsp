@@ -31,7 +31,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="contactinfo">
+                            <div class="logo pull-left">
+                                <img src="${pageContext.request.contextPath}/assets/img/imags/foto1.png" height="60"/></a>
+                            </div>
+                            <div class="contactinfo pull-left">
                                 <ul class="nav nav-pills">
                                     <li><a href="#"><i class="fa fa-phone"></i> +(503) 7140-2841</a></li>
                                     <li><a href="#"><i class="fa fa-envelope"></i> tiendaorakle@gmail.com</a></li>
@@ -54,9 +57,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 clearfix">
-                            <div class="logo pull-left">
-                                <img src="${pageContext.request.contextPath}/assets/img/imags/foto1.png" alt=""/></a>
-                            </div>
+                            
                             <div class="btn-group pull-right clearfix">
                             </div>
                         </div>
@@ -78,14 +79,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-9">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     <li><a href="Menu.jsp" class="active">Menu</a></li>
@@ -108,59 +101,11 @@
                 </div>
             </div><!--/header-bottom-->
         </header>
-        <section id="slider"><!--slider-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#slider-carousel" data-slide-to="1" class="active"></li>
-                                <li data-target="#slider-carousel" data-slide-to="2"></li>
-                            </ol>
-
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <div class="col-sm-6">
-                                        <h1><span>Floristeria</span>-Orakle</h1>
-                                        <h2>Somos la mejor opción</h2>
-                                        <button type="button" class="btn btn-default get">Compra ahora</button>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <img src="${pageContext.request.contextPath}/assets/img/images/Menu/orquidea1.jpg" class="girl img-responsive" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-inner">
-                                <div class="item">
-                                    <div class="item active">
-                                        <div class="col-sm-6">
-                                            <h1><span>Floristeria</span>-Orakle</h1>
-                                            <h2>En Arreglos</h2>
-                                            <button type="button" class="btn btn-default get">Compra ahora</button>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <img src="${pageContext.request.contextPath}/assets/img/images/Menu/orquidea2.jpg" class="girl img-responsive" alt="" />
-                                        </div>
-                                    </div>  
-                                </div>
-                            </div>
-
-                            <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a href="#slider-carousel1" class="right control-carousel hidden-xs" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!--/slider-->
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-3">
-                        <div class="left-sidebar">
+                    <div class="col-sm-12">
+                        <div class="left-sidebar pull-right">
                             <h2>Tipos de Arreglos</h2>
                             <div class="panel-group category-products" id="accordian"><!--category-products-->
                                 <div class="panel panel-default">
@@ -225,6 +170,15 @@
                                 </div>
                             </div><!--/category-products-->
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+
                         <div class="col-sm-12 padding-right">
                             <div class="features_items"><!--features_items-->
                                 <h2 class="title text-center">Nuevos Arreglos</h2>
@@ -274,7 +228,7 @@
                 </div>
             </div>
         </section>
-                                                
+
         <a href="${pageContext.request.contextPath}/imags/fonts/FontAwesome.otf"></a>
         <a href="${pageContext.request.contextPath}/imags/fonts/fontawesome-webfont.svg"></a>
         <a href="${pageContext.request.contextPath}/imags/fonts/glyphicons-halflings-regular.svg"></a>
