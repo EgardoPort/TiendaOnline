@@ -35,23 +35,26 @@ public class LoginController extends HttpServlet {
         } else {
             usu.setEmail(user);
             usu.setPass(pass);
-            
+
             tipoUsuario = usu.tipoUser();
             String name = usu.getNameUser();
+            if (usu.estado().equals("1")) {
+                if (tipoUsuario != "") {
+                    request.getSession().setAttribute("name", name);
+                    request.getSession().setAttribute("tipo_user", tipoUsuario);
 
-            if (tipoUsuario != "") {
-                request.getSession().setAttribute("name", name);
-                request.getSession().setAttribute("tipo_user", tipoUsuario);
+                    if (tipoUsuario.equals("Administrador")) {
+                        response.sendRedirect("views/Administrador/Index/index.jsp");
 
-                if (tipoUsuario.equals("Administrador")) {
-                    response.sendRedirect("views/Administrador/Index/index.jsp");
-
-                } else if (tipoUsuario.equals("Estandar")) {
-                    response.sendRedirect("views/Estandar/Menu_Estan.jsp");
+                    } else if (tipoUsuario.equals("Estandar")) {
+                        response.sendRedirect("views/Estandar/Menu_Estan.jsp");
+                    } else {
+                        response.sendRedirect("Login.jsp");
+                    }
                 } else {
-                    response.sendRedirect("Login.jsp");
+                    request.getRequestDispatcher("Login.jsp").forward(request, response);
                 }
-            } else {
+            }else{
                 request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
         }

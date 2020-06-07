@@ -5,14 +5,13 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Usuario_Model {
 
     private int id_usuarios;
     private String nombre_user;
     private String apellido_user;
-    private Date fecha_nacimiento;
+    private String fecha_nacimiento;
     private String telefono;
     private String email;
     private String pass;
@@ -51,11 +50,11 @@ public class Usuario_Model {
         this.apellido_user = apellido_user;
     }
 
-    public Date getFecha_nacimiento() {
+    public String getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(String fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
@@ -117,10 +116,10 @@ public class Usuario_Model {
             while (res.next()) {
                 Usuario_Model user = new Usuario_Model();
 
-                //user.setId_usuarios(res.getInt("id"));
+                user.setId_usuarios(res.getInt("id_usuarios"));
                 user.setNombre_user(res.getString("nombre_user"));
                 user.setApellido_user(res.getString("apellido_user"));
-                user.setFecha_nacimiento(res.getDate("fecha_nacimiento"));
+                user.setFecha_nacimiento(res.getString("fecha_nacimiento"));
                 user.setTelefono(res.getString("telefono"));
                 user.setEmail(res.getString("email"));
                 user.setEstado(res.getString("estado"));
@@ -141,6 +140,22 @@ public class Usuario_Model {
 
         try {
             String sql = "INSERT INTO usuarios (null, '" + this.nombre_user + "', '" + this.apellido_user + "','" + this.fecha_nacimiento + "', "
+                    + "'" + this.telefono + "', '" + this.email + "','" + this.pass + "', '" + this.genero + "','" + this.estado + "', '" + this.tipo_user + "')";
+            this.stmt = con.createStatement();
+
+            resultado = (stmt.executeUpdate(sql) > 0) ? true : false;
+
+        } catch (Exception e) {
+            System.out.println("Error-Add new user." + e.getMessage());
+        }
+        return resultado;
+    }
+    
+    public boolean agregarUserAdmin() {
+        boolean resultado = false;
+
+        try {
+            String sql = "INSERT INTO usuarios VALUES(null, '" + this.nombre_user + "', '" + this.apellido_user + "','" + this.fecha_nacimiento + "', "
                     + "'" + this.telefono + "', '" + this.email + "','" + this.pass + "', '" + this.genero + "','" + this.estado + "', '" + this.tipo_user + "')";
             this.stmt = con.createStatement();
 
@@ -194,7 +209,70 @@ public class Usuario_Model {
             
             nombre = res.getString("nombreCompleto");
         } catch (Exception e) {
+            System.out.println("Error GetNameUser" + e.getMessage());
         }
         return nombre;
+    }
+    
+    public String estado(){
+        String estado = "";
+        try {
+            this.stmt = this.con.createStatement();
+            ResultSet res = stmt.executeQuery("SELECT estado FROM usuarios WHERE email = '"+this.email+"'");
+            res.next();
+            
+            estado = res.getString("estado");
+        } catch (Exception e) {
+            System.out.println("Error GetEstado" + e.getMessage());
+        }
+        return estado;
+    }
+    
+    public boolean cambiar(){
+        boolean cambiar = false;
+        String estado = "";
+        
+        try {
+            this.stmt = this.con.createStatement();
+            ResultSet res = stmt.executeQuery("SELECT estado FROM usuarios WHERE email = '"+this.email+"'");
+            res.next();
+            estado = res.getString("estado");
+            
+            if(estado.equals("1")){
+                cambiar = (this.stmt.executeUpdate("UPDATE usuarios SET estado = '0' WHERE id_usuarios = '"+this.id_usuarios+"'") > 0)?true:false;
+            }else{
+                cambiar = (this.stmt.executeUpdate("UPDATE usuarios SET estado = '1' WHERE id_usuarios = '"+this.id_usuarios+"'") > 0)?true:false;
+            }
+        } catch (Exception e) {
+            System.out.println("Error change estado." + e.getMessage());
+        }
+        return cambiar;
+    }
+    
+    public ResultSet usuarioById(int id){
+        ResultSet res = null;
+        try {
+            String sql = "SELECT * FROM usuarios WHERE id_usuarios = "+id;
+            this.stmt = this.con.createStatement();
+            res = stmt.executeQuery(sql);
+        } catch (Exception e) {
+            System.out.println("Error ById: "+e.getMessage());
+        }
+        return res;
+    }
+    
+    public boolean update(){
+        boolean actu = false;
+        try {
+            String sql = "UPDATE usuarios SET nombre_user='" + this.nombre_user + "', apellido_user='" + this.apellido_user + "',"
+                    + "fecha_nacimiento='" + this.fecha_nacimiento + "', telefono='" + this.telefono + "', email='" + this.email + "',"
+                    + "pass='" + this.pass + "', genero='" + this.genero + "', estado='" + this.estado + "', tipo_user='" + this.tipo_user + "'"
+                    + "WHERE id_usuarios='"+this.id_usuarios+"'";
+            this.stmt = this.con.createStatement();
+            actu = (this.stmt.executeUpdate(sql) > 0);
+        } catch (Exception e) {
+            System.out.println("Error_Update" + e.getMessage());
+        }
+        return actu;
     }
 }

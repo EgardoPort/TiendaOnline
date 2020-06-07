@@ -18,7 +18,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Usuario_Controller</servlet-name>
-        <url-pattern>/Usuario_Controller</url-pattern>
+        <url-pattern>/usuario.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

@@ -17,16 +17,15 @@
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-</body>
+    <!-- jQuery -->
+    <script src="${pageContext.request.contextPath}/assets/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="${pageContext.request.contextPath}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="${pageContext.request.contextPath}/assets/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="${pageContext.request.contextPath}/assets/js/demo.js"></script>
+    
+
 </html>
